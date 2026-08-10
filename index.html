@@ -6,6 +6,166 @@
     <title>Nurul Huda - Al-Qur'an 30 Juz & Sejarah Islam</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        .realtime-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--surface);
+            border: 1px solid var(--border-glass);
+            padding: 12px 20px;
+            border-radius: 14px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(12px);
+            font-size: 13px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .realtime-bar span {
+            color: var(--primary-gold);
+            font-weight: 600;
+        }
+        
+        /* Hero Card dengan Dynamic Background Berdasarkan Waktu */
+        .hero-card {
+            background-size: cover;
+            background-position: center;
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            transition: background 0.8s ease-in-out;
+        }
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+        }
+        .arabic-quote {
+            font-size: 26px;
+            color: var(--primary-gold);
+            font-family: 'Traditional Arabic', serif;
+            margin: 16px 0 6px 0;
+        }
+
+        /* Badge Status Suasana Waktu & Cuaca */
+        .time-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary-gold);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        /* Statistik Portal */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 24px;
+        }
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border-glass);
+            padding: 18px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            backdrop-filter: blur(12px);
+            transition: 0.3s;
+        }
+        .stat-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+        }
+        .stat-icon {
+            font-size: 28px;
+            color: var(--primary-gold);
+            background: rgba(212, 175, 55, 0.1);
+            padding: 12px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .stat-info h4 {
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 2px;
+        }
+        .stat-info p {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        /* Widget Kutipan Harian */
+        .daily-verse {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), var(--surface));
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 18px;
+            padding: 24px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(12px);
+        }
+        .daily-verse h3 {
+            color: var(--primary-gold);
+            font-size: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .daily-verse p {
+            color: #e2e8f0;
+            font-size: 13.5px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .card-item {
+            background: var(--surface);
+            border: 1px solid var(--border-glass);
+            border-radius: 18px;
+            padding: 24px;
+            backdrop-filter: blur(12px);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .card-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(212, 175, 55, 0.5);
+            background: var(--surface-hover);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+        }
+        .badge-surah {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--primary-gold);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+    </style>
 </head>
 <body>
 
@@ -22,41 +182,145 @@
     </header>
 
     <div class="container">
-        <div class="hero-card">
-            <h1>Selamat Datang di Portal Khazanah Islam</h1>
-            <p>Jendela digital untuk merenungi hikmah, mempelajari lembaran sejarah peradaban Islam, menyelami kisah nyata penuh teladan dari Al-Qur'an, serta membaca Al-Qur'an lengkap 30 Juz kapan saja dan di mana saja.</p>
+        <!-- Bar Real-Time Tanggal & Jam -->
+        <div class="realtime-bar">
+            <div id="realtimeDate"><i class='bx bx-calendar'></i> Memuat tanggal...</div>
+            <div id="realtimeClock"><i class='bx bx-time-five'></i> <span>00:00:00</span></div>
+        </div>
+
+        <!-- Banner Hero Utama dengan Dynamic Theme (Pagi/Siang/Sore/Malam) -->
+        <div class="hero-card" id="heroCardBanner">
+            <div class="time-status-badge" id="timeStatusBadge">
+                <i class='bx bx-sun'></i> <span id="statusText">Memuat Suasana...</span>
+            </div>
+            <h1>SELAMAT DATANG DI <span style="color: var(--primary-gold);">NURUL HUDA</span></h1>
+            <p>Jendela digital untuk merenungi hikmah, mempelajari lembaran sejarah peradaban Islam, menyelami kisah nyata penuh teladan, serta membaca Al-Qur'an lengkap 30 Juz dengan mudah.</p>
             <div class="arabic-quote">
                 رَبِّ زِدْنِي عِلْمًا
             </div>
-            <p style="font-size: 13px; font-style: italic;">"Ya Allah, tambahkanlah kepadaku ilmu pengetahuan." (QS. Taha: 114)</p>
+            <p style="font-size: 13px; font-style: italic; color: var(--text-muted);">"Ya Allah, tambahkanlah kepadaku ilmu pengetahuan." (QS. Taha: 114)</p>
+        </div>
+
+        <!-- Statistik Portal -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class='bx bx-book-bookmark'></i></div>
+                <div class="stat-info">
+                    <h4>114 Surah</h4>
+                    <p>Al-Qur'an Lengkap 30 Juz</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class='bx bx-history'></i></div>
+                <div class="stat-info">
+                    <h4>6+ Bab Utama</h4>
+                    <p>Ensiklopedi Sejarah & Kisah</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class='bx bx-shield-quarter'></i></div>
+                <div class="stat-info">
+                    <h4>Open Access</h4>
+                    <p>Gratis & Tanpa Batas</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Widget Mutiara / Kutipan Harian -->
+        <div class="daily-verse">
+            <h3><i class='bx bx-sparkles'></i> Renungan Harian Nurul Huda</h3>
+            <p>"Barangsiapa yang menempuh suatu jalan untuk mencari ilmu, maka Allah akan memudahkan baginya jalan menuju surga." (HR. Muslim)</p>
         </div>
 
         <h2 style="font-size: 20px; color: #fff; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
             <i class='bx bx-compass' style="color: var(--primary-gold);"></i> Fitur Utama Portal
         </h2>
 
+        <!-- Grid Menu / Fitur -->
         <div class="grid-cards">
-            <a href="quran.html" class="card-item" style="text-decoration: none; color: inherit; display: block; border-color: rgba(212, 175, 55, 0.4);">
-                <div class="badge-surah" style="background: rgba(212, 175, 55, 0.15); color: var(--primary-gold); border-color: rgba(212, 175, 55, 0.3);">Eksklusif</div>
-                <h3>Baca Al-Qur'an 30 Juz</h3>
-                <p>Akses lengkap seluruh surah Al-Qur'an dari Juz 1 sampai Juz 30 disertai terjemahan bahasa Indonesia yang jelas dan mudah dibaca.</p>
+            <a href="quran.html" class="card-item" style="text-decoration: none; color: inherit; display: block;">
+                <div class="badge-surah">Eksklusif 30 Juz</div>
+                <h3 style="color: #fff; font-size: 17px; margin-bottom: 8px;">Baca Al-Qur'an Digital</h3>
+                <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Akses lengkap seluruh surah Al-Qur'an dari Juz 1 sampai Juz 30 disertai terjemahan bahasa Indonesia yang jelas.</p>
             </a>
-            <div class="card-item">
+            
+            <a href="kisah.html" class="card-item" style="text-decoration: none; color: inherit; display: block;">
                 <div class="badge-surah">Al-Qashash & Al-Baqarah</div>
-                <h3>Kisah Nyata Pilihan</h3>
-                <p>Mengkaji kisah agung para Nabi dan umat terdahulu yang sarat akan petunjuk dan pelajaran moral kehidupan.</p>
-            </div>
-            <div class="card-item">
+                <h3 style="color: #fff; font-size: 17px; margin-bottom: 8px;">Kisah Nyata Pilihan</h3>
+                <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Mengkaji kisah agung para Nabi dan umat terdahulu yang sarat akan petunjuk dan pelajaran moral kehidupan.</p>
+            </a>
+
+            <a href="tentang.html" class="card-item" style="text-decoration: none; color: inherit; display: block;">
                 <div class="badge-surah">Sejarah Peradaban</div>
-                <h3>Jejak Dakwah & Kejayaan</h3>
-                <p>Menelusuri lembaran emas perjalanan risalah Islam dari masa kenabian hingga era keemasan sains dan ilmu pengetahuan.</p>
-            </div>
+                <h3 style="color: #fff; font-size: 17px; margin-bottom: 8px;">Jejak Dakwah & Kejayaan</h3>
+                <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Menelusuri lembaran emas perjalanan risalah Islam dari masa kenabian hingga era keemasan sains dan ilmu pengetahuan.</p>
+            </a>
         </div>
     </div>
 
     <footer>
-        WEBSITE CREATED BY <strong>LIONEL ALVIO</strong> &copy; 2026
+        WEBSITE CREATED BY <strong>LIONEL ALVIO KENZIE IBRAHIM</strong> &copy; 2026
     </footer>
 
+    <!-- Script Jam, Tanggal & Dynamic Theme Waktu Real-Time -->
+    <script>
+        function updateRealtimeSystem() {
+            const now = new Date();
+            const hours = now.getHours();
+            
+            // Format Tanggal & Jam
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('realtimeDate').innerHTML = `<i class='bx bx-calendar'></i> ${now.toLocaleDateString('id-ID', options)}`;
+            
+            const h = String(hours).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('realtimeClock').innerHTML = `<i class='bx bx-time-five'></i> <span>${h}:${m}:${s} WIB</span>`;
+
+            // Logika Dynamic Background & Suasana Waktu Berdasarkan Jam Komputer
+            const heroBanner = document.getElementById('heroCardBanner');
+            const statusText = document.getElementById('statusText');
+            const badgeIcon = document.querySelector('#timeStatusBadge i');
+
+            let bgOverlay = "";
+            let bgImg = "";
+            let statusString = "";
+            let iconClass = "";
+
+            if (hours >= 4 && hours < 11) {
+                // Pagi (Cerah / Sejuk)
+                bgImg = "https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1200&auto=format&fit=crop";
+                bgOverlay = "linear-gradient(rgba(10, 20, 15, 0.75), rgba(5, 10, 7, 0.9))";
+                statusString = "Selamat Pagi — Waktu yang Tenang untuk Memulai Hari";
+                iconClass = "bx bx-sun";
+            } else if (hours >= 11 && hours < 15) {
+                // Siang (Terang / Terik)
+                bgImg = "https://images.unsplash.com/photo-1564769625615-f50b06a4b122?q=80&w=1200&auto=format&fit=crop";
+                bgOverlay = "linear-gradient(rgba(5, 10, 7, 0.7), rgba(5, 10, 7, 0.85))";
+                statusString = "Selamat Siang — Semangat Beraktivitas & Mencari Ilmu";
+                iconClass = "bx bx-brightness";
+            } else if (hours >= 15 && hours < 18) {
+                // Sore (Redup / Menjelang Senja)
+                bgImg = "https://images.unsplash.com/photo-1519817650390-64a93db51149?q=80&w=1200&auto=format&fit=crop";
+                // Nuansa sedikit abu-abu/redup senja sesuai request
+                bgOverlay = "linear-gradient(rgba(30, 30, 35, 0.82), rgba(10, 10, 15, 0.95))";
+                statusString = "Selamat Sore — Menjelang Malam Penuh Berkah";
+                iconClass = "bx bx-cloud";
+            } else {
+                // Malam (Gelap Elegan / Syahdu)
+                bgImg = "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1200&auto=format&fit=crop";
+                bgOverlay = "linear-gradient(rgba(3, 6, 4, 0.88), rgba(2, 4, 3, 0.96))";
+                statusString = "Selamat Malam — Waktu Istirahat & Merenung";
+                iconClass = "bx bx-moon";
+            }
+
+            heroBanner.style.backgroundImage = `${bgOverlay}, url('${bgImg}')`;
+            statusText.innerText = statusString;
+            badgeIcon.className = iconClass;
+        }
+
+        updateRealtimeSystem();
+        setInterval(updateRealtimeSystem, 1000);
+    </script>
 </body>
 </html>
