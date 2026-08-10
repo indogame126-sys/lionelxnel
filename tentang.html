@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tentang Web - Nurul Huda</title>
+    <title>Tentang & Tools Islamic - Nurul Huda</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
@@ -41,6 +41,120 @@
             color: var(--text-muted);
             line-height: 1.6;
         }
+        
+        /* Styling Section Tools Islamic Interaktif */
+        .tools-section {
+            margin-top: 35px;
+        }
+        .section-title {
+            color: #fff;
+            font-size: 20px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+        .tool-box {
+            background: var(--surface);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 24px;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+        .tool-box h4 {
+            color: var(--primary-gold);
+            font-size: 17px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tool-box p {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+        
+        /* Tasbih UI */
+        .tasbih-display {
+            background: rgba(5, 10, 7, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 14px;
+        }
+        .tasbih-count {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--primary-gold);
+        }
+        .tasbih-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .tasbih-btn-group {
+            display: flex;
+            gap: 10px;
+        }
+        .btn-gold {
+            background: var(--primary-gold);
+            color: #050a07;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            flex: 1;
+            transition: 0.2s;
+        }
+        .btn-gold:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+        .btn-outline-red {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Zakat Calculator UI */
+        .zakat-input {
+            width: 100%;
+            background: rgba(5, 10, 7, 0.6);
+            border: 1px solid var(--border-glass);
+            padding: 12px;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 14px;
+            margin-bottom: 12px;
+            outline: none;
+        }
+        .zakat-input:focus {
+            border-color: var(--primary-gold);
+        }
+        .zakat-result {
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px dashed rgba(212, 175, 55, 0.3);
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            color: #fff;
+            margin-top: 10px;
+        }
+
         .dev-badge {
             display: inline-flex;
             align-items: center;
@@ -61,9 +175,9 @@
     <header>
         <div class="logo"><i class='bx bx-book-heart'></i> NURUL HUDA</div>
         <nav class="nav-links">
-            <a href="index.html">Beranda</a>
-            <a href="kisah.html" class="active">Kisah & Sejarah</a>
-            <a href="tentang.html">Tentang</a>
+            <a href="index.html">DASHBOARD</a>
+            <a href="kisah.html">KISAH SEJARAH ISLAM</a>
+            <a href="tentang.html" class="active">INFORMATION</a>
         </nav>
         <a href="quran.html" class="btn-quran-header">
             <i class='bx bx-book-open'></i> Baca Al-Qur'an (30 Juz)
@@ -71,40 +185,100 @@
     </header>
 
     <div class="container">
+        <!-- Banner Hero -->
         <div class="hero-card">
             <h1>Tentang Portal Nurul Huda</h1>
-            <p>Website <strong>Nurul Huda</strong> dibangun dengan dedikasi tinggi untuk menyajikan informasi sejarah peradaban Islam, kisah-kisah Qur'ani, serta fasilitas baca Al-Qur'an digital 30 Juz yang interaktif, bersih, dan nyaman diakses oleh siapa saja.</p>
+            <p>Website <strong>Nurul Huda</strong> dibangun sebagai pusat literasi dan sarana interaktif digital untuk mempelajari Al-Qur'an, menelusuri sejarah Islam, serta memanfaatkan berbagai perlengkapan ibadah harian yang modern.</p>
+            <div class="dev-badge">
+                <i class='bx bx-code-alt'></i> CREATED BY LIONEL ALVIO (2026)
+            </div>
         </div>
 
+        <!-- Info Grid -->
         <div class="about-grid">
             <div class="about-card">
                 <i class='bx bx-book-open'></i>
-                <h3>Fitur Al-Qur'an Digital</h3>
-                <p>Dilengkapi dengan data resmi 114 Surah lengkap bersama teks Arab berformat jernih, teks latin, serta terjemahan bahasa Indonesia yang akurat.</p>
+                <h3>Al-Qur'an Digital</h3>
+                <p>Dilengkapi teks Arab jernih, transliterasi latin, serta terjemahan bahasa Indonesia untuk memudahkan proses tadarus harian.</p>
             </div>
             <div class="about-card">
                 <i class='bx bx-history'></i>
-                <h3>Kisah & Sejarah Islam</h3>
-                <p>Menyajikan berbagai rangkuman kisah teladan nabi, sahabat, serta peristiwa penting dalam lembaran sejarah peradaban Islam.</p>
+                <h3>Cerita 25 Nabi</h3>
+                <p>Rangkuman kisah perjalanan hidup para nabi dan rasul yang dikemas dengan bahasa ringan dan penuh hikmah kehidupan.</p>
             </div>
             <div class="about-card">
                 <i class='bx bx-devices'></i>
-                <h3>Desain Modern & Responsif</h3>
-                <p>Mengusung konsep antarmuka Glassmorphism yang elegan, ringan, dan optimal digunakan baik lewat laptop maupun perangkat seluler.</p>
+                <h3>Desain Glassmorphism</h3>
+                <p>Dibangun menggunakan antarmuka modern bernuansa gelap elegan yang sangat nyaman dipandang berlama-lama.</p>
             </div>
         </div>
 
-        <div class="hero-card" style="margin-top: 24px; text-align: center;">
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 4px;">DEVELOPER & CREATOR</p>
-            <div class="dev-badge">
-                <i class='bx bx-code-alt'></i> LIONEL ALVIO
+        <!-- SECTION TOOLS ISLAMIC INTERAKTIF (Beneran Jalan) -->
+        <div class="tools-section">
+            <h3 class="section-title"><i class='bx bx-wrench'></i> Mini Tools Islamic Interaktif</h3>
+            
+            <div class="tools-grid">
+                <!-- Tool 1: Tasbih Digital -->
+                <div class="tool-box">
+                    <h4><i class='bx bx-radio-circle-marked'></i> Tasbih Digital Harian</h4>
+                    <p>Gunakan alat ini untuk menghitung dzikir harianmu secara praktis di browser.</p>
+                    <div class="tasbih-display">
+                        <div class="tasbih-label">Hitungan Dzikir</div>
+                        <div class="tasbih-count" id="tasbihCount">0</div>
+                    </div>
+                    <div class="tasbih-btn-group">
+                        <button class="btn-gold" onclick="hitungTasbih()"><i class='bx bx-plus'></i> Hitung</button>
+                        <button class="btn-outline-red" onclick="resetTasbih()"><i class='bx bx-reset'></i> Reset</button>
+                    </div>
+                </div>
+
+                <!-- Tool 2: Kalkulator Zakat Mal -->
+                <div class="tool-box">
+                    <h4><i class='bx bx-calculator'></i> Kalkulator Zakat Mal (Harta)</h4>
+                    <p>Hitung kewajiban zakat harta (2.5%) jika simpananmu sudah mencapai nisab.</p>
+                    <input type="number" id="jumlahHarta" class="zakat-input" placeholder="Masukkan total harta/tabungan (Rp)...">
+                    <button class="btn-gold" style="width: 100%; margin-bottom: 8px;" onclick="hitungZakat()">Hitung Zakat</button>
+                    <div class="zakat-result" id="zakatResult">
+                        Hasil kalkulasi zakat akan muncul di sini.
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <footer>
-        WEBSITE CREATED BY <strong>LIONEL ALVIO</strong> &copy; 2026
+        WEBSITE CREATED BY <strong>LIONEL ALVIO KENZIE IBRAHIM</strong> &copy; 2026
     </footer>
 
+    <!-- Script Fungsional Tools -->
+    <script>
+        // Logika Tasbih Digital
+        let count = 0;
+        function hitungTasbih() {
+            count++;
+            document.getElementById('tasbihCount').innerText = count;
+        }
+        function resetTasbih() {
+            count = 0;
+            document.getElementById('tasbihCount').innerText = count;
+        }
+
+        // Logika Kalkulator Zakat Mal
+        function hitungZakat() {
+            const harta = document.getElementById('jumlahHarta').value;
+            const resultBox = document.getElementById('zakatResult');
+            
+            if (!harta || harta <= 0) {
+                resultBox.innerHTML = "<span style='color: #ef4444;'>Masukkan nominal harta yang valid!</span>";
+                return;
+            }
+
+            // Asumsi kasar nisab standar setara harga 85 gram emas (misal kisaran aman / estimasi input bebas)
+            const zakat = harta * 0.025;
+            const formatRupiah = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(zakat);
+            
+            resultBox.innerHTML = `Zakat yang harus dikeluarkan (2.5%): <br><strong style="color: var(--primary-gold); font-size: 15px;">${formatRupiah}</strong>`;
+        }
+    </script>
 </body>
 </html>
