@@ -7,6 +7,69 @@
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
+        /* Perbaikan Header & Tombol Header agar konsisten rapi */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 5%;
+            background: rgba(5, 10, 7, 0.75);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-glass);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-gold);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.3s;
+            letter-spacing: 0.5px;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-gold);
+            text-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+        }
+        .btn-quran-header {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--primary-gold);
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+        .btn-quran-header:hover {
+            background: var(--primary-gold);
+            color: #050a07;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
         .about-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -168,6 +231,42 @@
             font-size: 13px;
             margin-top: 14px;
         }
+
+        /* Style Ilustrasi Foto/Kartu Estetik ala Halaman Surah */
+        .quran-illustration-card {
+            background: var(--surface);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 24px;
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            flex-wrap: wrap;
+        }
+        .quran-illustration-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 14px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .quran-illustration-content h4 {
+            color: var(--primary-gold);
+            font-size: 18px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .quran-illustration-content p {
+            color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -213,7 +312,16 @@
             </div>
         </div>
 
-        <!-- SECTION TOOLS ISLAMIC INTERAKTIF (Beneran Jalan) -->
+        <!-- Kartu Ilustrasi Foto/Estetik ala Halaman Surah -->
+        <div class="quran-illustration-card">
+            <img src="https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=400&q=80" alt="Ilustrasi Al-Qur'an">
+            <div class="quran-illustration-content" style="flex: 1; min-width: 240px;">
+                <h4><i class='bx bx-star'></i> Pedoman Hidup Penuh Cahaya</h4>
+                <p>"Sebaik-baik kalian adalah orang yang mempelajari Al-Qur'an dan mengajarkannya." (HR. Bukhari). Mari jadikan portal digital ini sebagai langkah awal istiqomah dalam mendekatkan diri kepada Sang Pencipta setiap hari.</p>
+            </div>
+        </div>
+
+        <!-- SECTION TOOLS ISLAMIC INTERAKTIF -->
         <div class="tools-section">
             <h3 class="section-title"><i class='bx bx-wrench'></i> Mini Tools Islamic Interaktif</h3>
             
@@ -273,7 +381,6 @@
                 return;
             }
 
-            // Asumsi kasar nisab standar setara harga 85 gram emas (misal kisaran aman / estimasi input bebas)
             const zakat = harta * 0.025;
             const formatRupiah = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(zakat);
             
