@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Web - Nurul Huda</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+        }
+        .about-card {
+            background: var(--surface);
+            border: 1px solid var(--border-glass);
+            border-radius: 18px;
+            padding: 24px;
+            backdrop-filter: blur(12px);
+            transition: 0.3s;
+        }
+        .about-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(212, 175, 55, 0.4);
+            background: var(--surface-hover);
+        }
+        .about-card i {
+            font-size: 32px;
+            color: var(--primary-gold);
+            margin-bottom: 14px;
+        }
+        .about-card h3 {
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .about-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        .dev-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--primary-gold);
+            padding: 8px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            font-weight: 600;
+            font-size: 13px;
+            margin-top: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><i class='bx bx-book-heart'></i> NURUL HUDA</div>
+        <nav class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="kisah.html" class="active">Kisah & Sejarah</a>
+            <a href="tentang.html">Tentang</a>
+        </nav>
+        <a href="quran.html" class="btn-quran-header">
+            <i class='bx bx-book-open'></i> Baca Al-Qur'an (30 Juz)
+        </a>
+    </header>
+
+    <div class="container">
+        <div class="hero-card">
+            <h1>Tentang Portal Nurul Huda</h1>
+            <p>Website <strong>Nurul Huda</strong> dibangun dengan dedikasi tinggi untuk menyajikan informasi sejarah peradaban Islam, kisah-kisah Qur'ani, serta fasilitas baca Al-Qur'an digital 30 Juz yang interaktif, bersih, dan nyaman diakses oleh siapa saja.</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-card">
+                <i class='bx bx-book-open'></i>
+                <h3>Fitur Al-Qur'an Digital</h3>
+                <p>Dilengkapi dengan data resmi 114 Surah lengkap bersama teks Arab berformat jernih, teks latin, serta terjemahan bahasa Indonesia yang akurat.</p>
+            </div>
+            <div class="about-card">
+                <i class='bx bx-history'></i>
+                <h3>Kisah & Sejarah Islam</h3>
+                <p>Menyajikan berbagai rangkuman kisah teladan nabi, sahabat, serta peristiwa penting dalam lembaran sejarah peradaban Islam.</p>
+            </div>
+            <div class="about-card">
+                <i class='bx bx-devices'></i>
+                <h3>Desain Modern & Responsif</h3>
+                <p>Mengusung konsep antarmuka Glassmorphism yang elegan, ringan, dan optimal digunakan baik lewat laptop maupun perangkat seluler.</p>
+            </div>
+        </div>
+
+        <div class="hero-card" style="margin-top: 24px; text-align: center;">
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 4px;">DEVELOPER & CREATOR</p>
+            <div class="dev-badge">
+                <i class='bx bx-code-alt'></i> LIONEL ALVIO
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        WEBSITE CREATED BY <strong>LIONEL ALVIO</strong> &copy; 2026
+    </footer>
+
+</body>
+</html>
