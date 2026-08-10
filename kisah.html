@@ -3,18 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kisah Nyata & Sejarah Al-Qur'an - Nurul Huda</title>
+    <title>Kisah 25 Nabi & Rasul - Nurul Huda</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        .story-hero {
+            background: linear-gradient(rgba(5, 10, 7, 0.82), rgba(5, 10, 7, 0.92)), 
+                        url('https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1200&auto=format&fit=crop') no-repeat center center;
+            background-size: cover;
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        .story-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+        }
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .story-card {
+            background: var(--surface);
+            border: 1px solid var(--border-glass);
+            border-radius: 18px;
+            padding: 24px;
+            backdrop-filter: blur(12px);
+            transition: 0.3s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .story-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(212, 175, 55, 0.5);
+            background: var(--surface-hover);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+        }
+        .story-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--primary-gold);
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 14px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            width: fit-content;
+        }
+        .story-card h3 {
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .story-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .read-book-btn {
+            background: rgba(212, 175, 55, 0.12);
+            color: var(--primary-gold);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+        .story-card:hover .read-book-btn {
+            background: var(--primary-gold);
+            color: #050a07;
+        }
+        
+        /* Style Modal Buku Digital */
+        .book-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(3, 8, 5, 0.94);
+            z-index: 3000;
+            overflow-y: auto;
+            padding: 20px;
+            backdrop-filter: blur(16px);
+        }
+        .book-container {
+            max-width: 850px;
+            margin: 40px auto;
+            background: #09130e;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            position: relative;
+        }
+        .close-book {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 8px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .book-title {
+            color: var(--primary-gold);
+            font-size: 24px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .book-subtitle {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-glass);
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .book-content-body {
+            color: #e2e8f0;
+            font-size: 14.5px;
+            line-height: 1.8;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .hikmah-box {
+            background: rgba(212, 175, 55, 0.06);
+            border: 1px dashed rgba(212, 175, 55, 0.3);
+            padding: 20px;
+            border-radius: 14px;
+            margin-top: 10px;
+        }
+        .hikmah-box h5 {
+            color: var(--primary-gold);
+            font-size: 15px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+    </style>
 </head>
 <body>
 
     <header>
         <div class="logo"><i class='bx bx-book-heart'></i> NURUL HUDA</div>
         <nav class="nav-links">
-            <a href="index.html">Beranda</a>
-            <a href="kisah.html" class="active">Kisah & Sejarah</a>
-            <a href="tentang.html">Tentang</a>
+            <a href="index.html">DASHBOARD</a>
+            <a href="kisah.html" class="active">KISAH DAN SEJARAH ISLAM</a>
+            <a href="tentang.html">INFORMATION</a>
         </nav>
         <a href="quran.html" class="btn-quran-header">
             <i class='bx bx-book-open'></i> Baca Al-Qur'an (30 Juz)
@@ -22,53 +190,273 @@
     </header>
 
     <div class="container">
-        <div class="hero-card">
-            <h1>Kisah Nyata & Sejarah Lengkap dalam Al-Qur'an</h1>
-            <p>Allah SWT berfirman: <em>"Sesungguhnya pada kisah-kisah mereka itu terdapat pengajaran bagi orang-orang yang mempunyai akal."</em> (QS. Yusuf: 111). Halaman ini merangkum catatan sejarah dan kisah autentik penuh hikmah dari Kitab Suci Al-Qur'an.</p>
+        <div class="story-hero">
+            <h1>Kisah Lengkap 25 Nabi & Rasul</h1>
+            <p>Pusat belajar sejarah para nabi dengan bahasa yang seru, santai, dan mudah dipahami oleh pelajar. Klik tombol pada masing-masing nabi untuk membaca cerita lengkap serta pelajaran hidupnya!</p>
         </div>
 
-        <div class="grid-cards">
-            <div class="card-item">
-                <div class="badge-surah">QS. Al-Kahf: 9-26</div>
-                <h3>Ashabul Kahfi (Pemuda Gua)</h3>
-                <p>Kisah keteguhan iman sekelompok pemuda yang melarikan diri dari kezaliman penguasa demi mempertahankan tauhid, lalu ditidurkan Allah di dalam gua selama ratusan tahun untuk menunjukkan kebesaran-Nya.</p>
-            </div>
+        <div class="story-grid" id="nabiGrid">
+            <!-- Data card akan dimuat otomatis oleh JavaScript supaya kodenya rapi -->
+        </div>
+    </div>
 
-            <div class="card-item">
-                <div class="badge-surah">QS. Maryam: 1-34</div>
-                <h3>Nabi Zakaria, Yahya & Maryam</h3>
-                <p>Ketulusan doa Nabi Zakaria yang memohon keturunan di usia senja, serta kesucian Siti Maryam dalam mengemban amanah besar melahirkan Nabi Isa AS tanpa seorang ayah sebagai mukjizat nyata.</p>
-            </div>
-
-            <div class="card-item">
-                <div class="badge-surah">QS. Luqman: 12-19</div>
-                <h3>Nasihat Bijak Luqman al-Hakim</h3>
-                <p>Teladan pengasuhan dan pendidikan tauhid penuh hikmah dari seorang hamba yang saleh kepada anaknya mengenai rasa syukur, larangan berbuat syirik, serta adab berinteraksi dengan sesama manusia.</p>
-            </div>
-
-            <div class="card-item">
-                <div class="badge-surah">QS. Al-Qashash: 3-43</div>
-                <h3>Kisah Nabi Musa & Firaun</h3>
-                <p>Drama sejarah penyelamatan bayi Musa di Sungai Nil, masa pertumbuhannya di istana musuh terbesar, hingga pertentangan kebenaran melawan kesombongan kekuasaan mutlak Firaun di muka bumi.</p>
-            </div>
-
-            <div class="card-item">
-                <div class="badge-surah">QS. Yusuf: 1-111</div>
-                <h3>Kisah Nabi Yusuf AS (Ahsanul Qashash)</h3>
-                <p>Kisah terbaik di dalam Al-Qur'an tentang ujian kesabaran menghadapi pengkhianatan saudara kandung, fitnah di istana Mesir, hingga akhirnya diangkat menjadi bendaharawan negara dan berkumpul kembali dengan keluarganya.</p>
-            </div>
-
-            <div class="card-item">
-                <div class="badge-surah">QS. Al-Anbiya & Saba'</div>
-                <h3>Kisah Nabi Sulaiman & Ratu Balqis</h3>
-                <p>Mukjizat luar biasa Nabi Sulaiman yang diberi kekuasaan atas angin, jin, dan bahasa binatang, serta hidayah yang menyapa Ratu Saba' (Balqis) untuk menyembah Allah Yang Maha Esa.</p>
-            </div>
+    <!-- Modal Popup Buku Digital -->
+    <div id="bookModal" class="book-modal">
+        <div class="book-container">
+            <button class="close-book" onclick="closeBook()"><i class='bx bx-x' style="font-size: 18px;"></i> Tutup</button>
+            <div id="bookModalContent"></div>
         </div>
     </div>
 
     <footer>
-        WEBSITE CREATED BY <strong>LIONEL ALVIO</strong> &copy; 2026
+        WEBSITE CREATED BY <strong>LIONEL ALVIO KENZIE IBRAHIM</strong> &copy; 2026
     </footer>
 
+    <script>
+        // Database 25 Nabi dengan bahasa santai & mudah dipahami pelajar
+        const nabiData = [
+            {
+                id: "adam",
+                num: "Nabi ke-1",
+                name: "Nabi Adam AS",
+                desc: "Manusia dan nabi pertama yang diciptakan Allah dari tanah, serta bapak dari seluruh umat manusia.",
+                story: "Nabi Adam AS adalah manusia pertama yang diciptakan Allah SWT langsung dari tanah liat. Beliau diajarkan berbagai nama benda oleh Allah dan ditempatkan di Surga bersama istrinya, Siti Hawa. Di sana, mereka hidup bahagia, namun diingatkan agar tidak mendekati satu buah terlarang. Karena bujukan iblis, mereka sempat berbuat khilaf dan memakan buah tersebut. Tapi, Nabi Adam langsung bertaubat dengan sungguh-sungguh kepada Allah, dan taubatnya pun diterima.",
+                hikmah: "Kalau kita berbuat salah atau khilaf, jangan malu untuk langsung meminta maaf dan bertaubat kepada Allah. Allah itu Maha Pengampun."
+            },
+            {
+                id: "idris",
+                num: "Nabi ke-2",
+                name: "Nabi Idris AS",
+                desc: "Nabi yang dikenal sangat cerdas, rajin belajar, dan orang pertama yang pandai menulis menggunakan pena.",
+                story: "Nabi Idris AS adalah keturunan Nabi Adam yang terkenal sangat cerdas, rajin, dan sabar. Beliau adalah orang pertama yang pandai membaca, menulis menggunakan pena, serta pandai menjahit pakaian sendiri. Semasa hidupnya, beliau selalu menggunakan waktunya untuk beribadah dan mengajarkan kebaikan kepada kaumnya agar tidak tersesat.",
+                hikmah: "Rajin belajar dan punya keterampilan itu sangat penting. Ilmu yang bermanfaat akan membuat hidup kita jauh lebih terarah."
+            },
+            {
+                id: "nuh",
+                num: "Nabi ke-3",
+                name: "Nabi Nuh AS",
+                desc: "Nabi yang sabar berdakwah ratusan tahun dan membuat kapal besar untuk menyelamatkan orang beriman dari banjir besar.",
+                story: "Nabi Nuh AS berdakwah selama ratusan tahun mengajak kaumnya untuk menyembah Allah Yang Maha Esa. Sayangnya, kebanyakan dari mereka malah mengejek dan menolak ajakan Nabi Nuh. Akhirnya, Allah memerintahkan Nabi Nuh untuk membuat sebuah kapal kayu yang sangat besar di tengah daratan. Saat banjir bandang dahsyat datang melanda, hanya Nabi Nuh dan pengikut setianya yang selamat di dalam kapal tersebut.",
+                hikmah: "Kesabaran itu tidak ada batasnya kalau kita niatkan karena Allah. Walaupun diejek orang lain, tetaplah berada di jalan yang benar."
+            },
+            {
+                id: "hud",
+                num: "Nabi ke-4",
+                name: "Nabi Hud AS",
+                desc: "Diutus untuk kaum 'Ad yang sombong karena punya fisik kuat dan bangunan-bangunan yang megah.",
+                story: "Nabi Hud AS diutus kepada kaum 'Ad yang tinggal di daerah Al-Ahqaf. Mereka adalah kaum yang badannya kuat-kuat, kaya raya, dan suka menyombongkan diri dengan membangun gedung-gedung mewah di atas bukit. Nabi Hud mengingatkan mereka agar bersyukur kepada Allah, tapi mereka malah sombong dan menantang azab. Akhirnya, Allah mengirimkan angin kencang yang sangat dingin selama 7 hari 7 malam hingga kaum tersebut binasa.",
+                hikmah: "Kekayaan, kekuatan fisik, atau kepintaran jangan pernah bikin kita sombong, karena semua itu cuma titipan dari Allah."
+            },
+            {
+                id: "saleh",
+                num: "Nabi ke-5",
+                name: "Nabi Saleh AS",
+                desc: "Diutus kepada kaum Tsamud dengan mukjizat luar biasa berupa unta betina yang keluar dari celah batu.",
+                story: "Kaum Tsamud sangat pandai memahat gunung-gunung untuk dijadikan rumah tinggal yang megah. Saat Nabi Saleh mengajak mereka beriman, mereka meminta mukjizat yang tidak masuk akal: mengeluarkan seekor unta bunting dari dalam batu besar. Atas izin Allah, mukjizat itu benar-benar terjadi! Sayangnya, orang-orang kafir di sana malah dengki dan menyembelih unta tersebut, sehingga mereka diazab dengan suara petir yang menggelegar.",
+                hikmah: "Jangan pernah merusak atau menentang nikmat yang sudah diberikan Allah, dan hargailah kepercayaan yang ada."
+            },
+            {
+                id: "ibrahim",
+                num: "Nabi ke-6",
+                name: "Nabi Ibrahim AS",
+                desc: "Bapak para nabi, sang penghancur berhala, dan diselamatkan Allah dari kobaran api Raja Namrud.",
+                story: "Nabi Ibrahim AS terkenal sangat cerdas dan berani sejak kecil. Beliau menghancurkan patung-patung berhala sesembahan kaumnya untuk menyadarkan mereka bahwa berhala itu tidak bisa berbuat apa-apa. Akibatnya, Raja Namrud yang murka memerintahkan agar Nabi Ibrahim dibakar hidup-hidup di dalam api yang sangat besar. Tapi atas kuasa Allah, api tersebut mendadak terasa dingin dan menyelamatkan Nabi Ibrahim tanpa luka sedikit pun.",
+                hikmah: "Keberanian dalam membela kebenaran pasti akan dijaga dan dilindungi oleh Allah SWT dari segala mara bahaya."
+            },
+            {
+                id: "luth",
+                num: "Nabi ke-7",
+                name: "Nabi Luth AS",
+                desc: "Nabi yang sabar memperingatkan kaum Sodom yang melanggar aturan moral dan norma kehidupan.",
+                story: "Nabi Luth AS adalah keponakan Nabi Ibrahim yang diutus ke kota Sodom. Penduduk kota ini terkenal suka melakukan perbuatan keji yang melanggar kodrat dan aturan kemanusiaan yang sehat. Nabi Luth terus-menerus menasihati mereka dengan sabar, tapi mereka justru mengusir Nabi Luth dari kota. Akhirnya, Allah menurunkan azab berupa hujan batu yang panas dan menjungkirbalikkan kota Sodom.",
+                hikmah: "Jauhi perbuatan menyimpang dan lingkungan yang rusak, karena norma agama diciptakan demi keselamatan manusia itu sendiri."
+            },
+            {
+                id: "ismail",
+                num: "Nabi ke-8",
+                name: "Nabi Ismail AS",
+                desc: "Anak Nabi Ibrahim yang sangat patuh saat diuji, serta bersama ayahnya membangun bangunan suci Ka'bah.",
+                story: "Nabi Ismail AS sejak kecil dikenal sebagai anak yang sangat penurut, sabar, dan berbakti kepada orang tua. Ketika Nabi Ibrahim mendapat mimpi untuk menyembelih putranya sebagai ujian ketaatan, Ismail dengan ikhlas berkata, 'Wahai ayahku, kerjakanlah apa yang diperintahkan kepadamu.' Menjelang disembelih, Allah mengganti Ismail dengan seekor domba besar. Bersama ayahnya, Ismail juga yang membangun fondasi Ka'bah di Makkah.",
+                hikmah: "Kepatuhan kepada orang tua dan keikhlasan dalam menjalankan perintah Allah adalah kunci utama mendapatkan keberkahan hidup."
+            },
+            {
+                id: "ishak",
+                num: "Nabi ke-9",
+                name: "Nabi Ishak AS",
+                desc: "Putra kedua Nabi Ibrahim yang dikaruniai usia panjang dan menjadi leluhur para nabi di tanah Kanaan.",
+                story: "Nabi Ishak AS adalah adik dari Nabi Ismail yang lahir dari ibunya, Siti Sarah, ketika kedua orang tuanya sudah berusia sangat lanjut. Kelahirannya merupakan mukjizat dan kabar gembira dari para malaikat. Nabi Ishak tumbuh menjadi nabi yang bijaksana, santun, dan melanjutkan dakwah ayahnya di wilayah Palestina dan sekitarnya.",
+                hikmah: "Keluarga yang penuh dengan doa dan kebaikan akan melahirkan keturunan yang membawa keberkahan bagi sesama."
+            },
+            {
+                id: "yaqub",
+                num: "Nabi ke-10",
+                name: "Nabi Ya'qub AS",
+                desc: "Ayah dari Nabi Yusuf yang sangat sabar menghadapi ujian kehilangan anak tercintanya selama bertahun-tahun.",
+                story: "Nabi Ya'qub AS adalah putra Nabi Ishak yang memiliki 12 orang anak laki-laki. Beliau sangat menyayangi putranya, Yusuf, karena melihat tanda-tanda kenabian padanya. Ketika Yusuf dikabarkan tewas diterkam serigala (padahal dibuang saudaranya ke sumur), Nabi Ya'qub bersabar dengan kesabaran yang luar biasa (*shabrun jamil*), hingga air matanya habis dan matanya buta karena terus menangis, namun imannya kepada Allah tidak pernah goyah.",
+                hikmah: "Ujian seberat apapun dalam keluarga harus dihadapi dengan kesabaran tingkat tinggi dan husnuzhan (berprasangka baik) kepada Allah."
+            },
+            {
+                id: "yusuf",
+                num: "Nabi ke-11",
+                name: "Nabi Yusuf AS",
+                desc: "Pemilik kisah terbaik (Ahsanul Qashash) tentang ketampanan, kesabaran di sumur & penjara, hingga jadi menteri.",
+                story: "Nabi Yusuf AS mengalami perjalanan hidup yang luar biasa dramatis. Dimulai dari dibuang kakak kandungnya ke sumur, dijual sebagai budak, difitnah di istana oleh Zulaikha hingga dipenjara bertahun-tahun. Berkat kepandaiannya menafsirkan mimpi Raja Mesir, beliau akhirnya dibebaskan dan diangkat menjadi menteri keuangan yang menyelamatkan negeri dari bahaya kelaparan.",
+                hikmah: "Jangan pernah putus asa ketika ditimpa masalah, karena di balik kesulitan pasti ada rencana indah yang disiapkan Allah."
+            },
+            {
+                id: "syuaib",
+                num: "Nabi ke-12",
+                name: "Nabi Syu'aib AS",
+                desc: "Nabi yang tegas melarang penduduk Madyan berbuat curang dalam urusan timbangan dan perdagangan pasar.",
+                story: "Nabi Syu'aib AS diutus kepada penduduk Madyan yang mayoritas kerjanya berdagang. Sifat buruk mereka adalah suka curang: kalau membeli minta dilebihkan, tapi kalau menimbang dan menakar untuk orang lain selalu dikurangi. Nabi Syu'aib terus mengingatkan mereka agar jujur dalam berniaga, tapi mereka menolak hingga akhirnya Allah menimpakan azab gempa dahsyat dan awan panas.",
+                hikmah: "Kejujuran dalam belajar, ujian, maupun berdagang adalah harga mati. Kecurangan sekecil apapun pasti dicatat oleh Allah."
+            },
+            {
+                id: "musa",
+                num: "Nabi ke-13",
+                name: "Nabi Musa AS",
+                desc: "Kalamullah yang memimpin Bani Israil keluar dari perbudakan Firaun dan membelah Laut Merah.",
+                story: "Nabi Musa AS dibesarkan di istana Firaun setelah diselamatkan dalam keranjang di Sungai Nil. Setelah dewasa dan diangkat menjadi nabi, beliau mendatangi Firaun untuk membebaskan Bani Israil. Bersama saudaranya Nabi Harun, beliau menghadapi sihir istana Firaun. Puncaknya, saat dikejar pasukan Firaun, Nabi Musa memukul tongkatnya ke laut atas perintah Allah, sehingga Laut Merah terbelah menjadi jalan kering.",
+                hikmah: "Kebenaran pasti akan menang melawan kezaliman, dan pertolongan Allah selalu dekat bagi hamba yang bertawakal."
+            },
+            {
+                id: "harun",
+                num: "Nabi ke-14",
+                name: "Nabi Harun AS",
+                desc: "Kakak kandung Nabi Musa yang sangat fasih berbicara dan setia mendampingi dakwah menegakkan kebenaran.",
+                story: "Nabi Harun AS dikaruniai keahlian berbicara yang sangat fasih dan jelas. Beliau diminta oleh Nabi Musa kepada Allah agar diangkat menjadi pendamping sekaligus pembantunya dalam menghadapi Firaun. Nabi Harun selalu setia melindungi dan menjaga umatnya di bukit Tursina ketika Nabi Musa sedang pergi bermunajat menerima Kitab Taurat.",
+                hikmah: "Kerja sama tim yang kompak dan saling mendukung dalam kebaikan akan membuat pekerjaan berat terasa lebih ringan."
+            },
+            {
+                id: "zulkifli",
+                num: "Nabi ke-15",
+                name: "Nabi Zulkifli AS",
+                desc: "Pemimpin dan raja yang terkenal sangat sabar, adil, serta tidak pernah marah dalam menghadapi masalah rakyat.",
+                story: "Nabi Zulkifli AS adalah seorang raja yang saleh dan pemimpin yang adil. Beliau terkenal karena kesabarannya yang luar biasa dalam memimpin rakyatnya. Setiap siang beliau berpuasa dan mengurus urusan rakyat, sementara malamnya dihabiskan untuk beribadah. Beliau bahkan membuat janji pada dirinya sendiri untuk tidak pernah marah dalam memutuskan perkara apapun.",
+                hikmah: "Menjadi pemimpin atau orang yang diandalkan harus punya sifat sabar, adil, dan mampu menahan emosi."
+            },
+            {
+                id: "daud",
+                num: "Nabi ke-16",
+                name: "Nabi Daud AS",
+                desc: "Raja pemberani yang mengalahkan raksasa Jalut, serta dianugerahi kitab Zabur dan suara merdu.",
+                story: "Nabi Daud AS dulunya adalah seorang prajurit muda yang ikut berperang melawan pasukan zalim pimpinan Jalut (Goliath). Dengan hanya menggunakan ketapel kecil, Nabi Daud berhasil mengalahkan Jalut. Setelah dewasa, beliau diangkat menjadi nabi sekaligus raja, dianugerahi Kitab Zabur, serta mukjizat bisa melunakkan besi panas dengan tangan kosong serta suara merdu yang membuat gunung dan burung ikut bertasbih.",
+                hikmah: "Kekuatan fisik yang besar bisa dikalahkan oleh keberanian, kecerdasan, dan izin dari Allah SWT."
+            },
+            {
+                id: "sulaiman",
+                num: "Nabi ke-17",
+                name: "Nabi Sulaiman AS",
+                desc: "Raja kaya raya yang menguasai angin, jin, dan bisa memahami bahasa hewan.",
+                story: "Nabi Sulaiman AS adalah putra Nabi Daud yang mewarisi kerajaan megah. Beliau meminta kepada Allah kekuasaan yang tidak diberikan kepada siapapun setelahnya. Beliau bisa memerintahkan angin untuk perjalanan kilat, memerintahkan bangsa jin untuk membangun gedung, serta mengerti obrolan semut dan burung hud-hud. Berkat kebijaksanaannya, Ratu Balqis dari negeri Saba' pun akhirnya beriman kepada Allah.",
+                hikmah: "Kekayaan dan fasilitas mewah tidak membuat Nabi Sulaiman sombong, melainkan membuatnya semakin rajin bersyukur."
+            },
+            {
+                id: "ilyas",
+                num: "Nabi ke-18",
+                name: "Nabi Ilyas AS",
+                desc: "Nabi yang dengan tegas memperingatkan kaum Bani Israil agar berhenti menyembah berhala Baal.",
+                story: "Nabi Ilyas AS diutus kepada kaum Bani Israil di wilayah timur Yordania yang kembali bandel karena menyembah patung berhala bernama Baal. Nabi Ilyas terus menerus memperingatkan mereka bahwa berhala itu tidak bisa memberi manfaat atau mudarat. Meski sempat diancam dan diburu oleh penguasa setempat, beliau tetap tegar berdakwah.",
+                hikmah: "Keteguhan prinsip untuk tetap berada di jalan Allah sangat diuji ketika orang di sekitar kita mulai menyimpang."
+            },
+            {
+                id: "ilyasa",
+                num: "Nabi ke-19",
+                name: "Nabi Ilyasa AS",
+                desc: "Penerus risalah Nabi Ilyas yang melanjutkan dakwah penuh kesabaran di tengah kaum yang keras kepala.",
+                story: "Nabi Ilyasa AS (Elisha) adalah murid sekaligus penerus setia dari Nabi Ilyas AS. Beliau melanjutkan tugas kenabian untuk membimbing Bani Israil setelah Nabi Ilyas wafat. Beliau mengajarkan kebaikan, kedisiplinan hidup, serta nilai-nilai ajaran tauhid kepada umatnya dengan penuh kelembutan.",
+                hikmah: "Meneruskan estafet kebaikan dan ilmu dari orang tua atau guru adalah tugas mulia bagi generasi penerus."
+            },
+            {
+                id: "yunus",
+                num: "Nabi ke-20",
+                name: "Nabi Yunus AS",
+                desc: "Nabi yang sempat pergi karena kesal lalu diselamatkan Allah dari dalam perut ikan besar berkat doanya.",
+                story: "Nabi Yunus AS sempat merasa sedih dan kesal karena kaumnya di Ninawa keras kepala menolak dakwahnya, sehingga beliau pergi meninggalkan mereka menaiki kapal laut. Di tengah jalan, kapal hampir tenggelam karena kelebihan muatan, lalu Nabi Yunus merelakan diri untuk diundi dan melompat ke laut. Beliau langsung ditelan oleh seekor ikan paus besar. Di dalam perut ikan yang gelap gulita, beliau terus berdzikir memohon ampun hingga Allah menyelamatkannya.",
+                hikmah: "Jangan pernah putus asa atau lari dari tanggung jawab. Dzikir dan doa mampu menyelamatkan kita dari tempat paling gelap sekalipun."
+            },
+            {
+                id: "zakaria",
+                num: "Nabi ke-21",
+                name: "Nabi Zakaria AS",
+                desc: "Nabi yang tekun merawat Baitulmaqdis dan berdoa tanpa putus asa di usia senja untuk mendapat keturunan.",
+                story: "Nabi Zakaria AS adalah pengurus rumah ibadah Baitulmaqdis yang setia merawat Siti Maryam. Di usianya yang sudah renta dan rambutnya memutih, beliau belum juga dikaruniai anak. Namun, beliau tidak pernah berhenti berdoa secara khusyuk kepada Allah memohon keturunan yang saleh. Doa tulusnya dikabulkan Allah dengan lahirnya Nabi Yahya AS.",
+                hikmah: "Jangan pernah berhenti berdoa kepada Allah, karena Allah Maha Mendengar walau permintaan itu kelihatannya mustahil menurut manusia."
+            },
+            {
+                id: "yahya",
+                num: "Nabi ke-22",
+                name: "Nabi Yahya AS",
+                desc: "Pemuda yang cerdas, sangat berbakti pada orang tua, dan berani menegakkan kebenaran tanpa rasa takut.",
+                story: "Nabi Yahya AS adalah putra Nabi Zakaria yang dikaruniai hikmah, kelembutan hati, dan rasa takut kepada Allah sejak kecil. Beliau dikenal sangat berbakti kepada orang tuanya, rajin belajar, dan tidak pernah sombong. Nabi Yahya juga sangat berani menegur kezaliman penguasa saat itu yang ingin melanggar aturan agama.",
+                hikmah: "Menjadi anak muda yang cerdas, saleh, dan berani berkata jujur adalah kebanggaan yang luar biasa."
+            },
+            {
+                id: "isa",
+                num: "Nabi ke-23",
+                name: "Nabi Isa AS",
+                desc: "Mesias bergelar Ruhullah yang lahir tanpa ayah dari Siti Maryam dan punya banyak mukjizat agung.",
+                story: "Nabi Isa AS adalah salah satu rasul penutup yang memiliki mukjizat luar biasa: lahir dari seorang ibu yang suci (Siti Maryam) tanpa seorang ayah. Saat masih bayi dalam buaian, beliau bisa berbicara membela ibunya. Setelah dewasa dan diberi Kitab Injil, beliau bisa menyembuhkan orang buta, orang sakit kusta, hingga menghidupkan orang mati atas izin Allah SWT.",
+                hikmah: "Segala keajaiban dan mukjizat di dunia ini murni terjadi atas izin dan kekuasaan Allah semata."
+            },
+            {
+                id: "muhammad",
+                num: "Nabi ke-24 / Penutup",
+                name: "Nabi Muhammad SAW",
+                desc: "Khotimul Anbiya (penutup para nabi), pembawa rahmat bagi semesta alam, dan penerima Al-Qur'an 30 Juz.",
+                story: "Nabi Muhammad SAW adalah nabi akhir zaman yang diutus untuk seluruh umat manusia di bumi. Beliau membawa ajaran Islam yang penuh kedamaian (*rahmatan lil 'alamin*), menerima mukjizat terbesar yaitu Kitab Suci Al-Qur'an 30 Juz, dan menjadi suri teladan terbaik dalam akhlak, kepemimpinan, perdagangan, serta kehidupan sehari-hari.",
+                hikmah: "Menjadikan Nabi Muhammad SAW sebagai idola dan panutan dalam hidup adalah cara terbaik untuk selamat di dunia dan akhirat."
+            }
+        ];
+
+        // Render daftar nabi ke dalam grid HTML secara otomatis
+        const gridContainer = document.getElementById('nabiGrid');
+        
+        nabiData.forEach(item => {
+            gridContainer.innerHTML += `
+                <div class="story-card" onclick="openBook('${item.id}')">
+                    <div>
+                        <div class="story-badge"><i class='bx bx-book-bookmark'></i> ${item.num}</div>
+                        <h3>${item.name}</h3>
+                        <p>${item.desc}</p>
+                    </div>
+                    <div class="read-book-btn"><i class='bx bx-book-open'></i> Baca Cerita & Hikmah</div>
+                </div>
+            `;
+        });
+
+        // Fungsi Buka Modal Buku Digital
+        function openBook(id) {
+            const data = nabiData.find(n => n.id === id);
+            if (!data) return;
+
+            const modalContent = document.getElementById('bookModalContent');
+            modalContent.innerHTML = `
+                <div class="book-title">${data.name}</div>
+                <div class="book-subtitle">
+                    <span><i class='bx bx-bookmark'></i> Ensiklopedi 25 Nabi</span>
+                    <span><i class='bx bx-check-shield'></i> Status: Autentik Qur'ani</span>
+                </div>
+                <div class="book-content-body">
+                    <h4><i class='bx bx-book-reader'></i> Cerita Singkat & Seru:</h4>
+                    <p>${data.story}</p>
+                    
+                    <div class="hikmah-box">
+                        <h5><i class='bx bx-bulb'></i> Pelajaran Hidup (Hikmah):</h5>
+                        <p>${data.hikmah}</p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('bookModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Fungsi Tutup Modal
+        function closeBook() {
+            document.getElementById('bookModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    </script>
 </body>
 </html>
