@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Nurul Huda - Dashboard Utama</title>
+    <title>Islamic Website</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
     <style>
@@ -20,7 +20,6 @@
 
         body { background-color: var(--bg-color); color: var(--dark-color); font-family: 'Plus Jakarta Sans', sans-serif; padding: 20px; max-width: 1200px; margin: 0 auto; }
 
-        /* Running Text (Biar Rame) */
         .marquee-container {
             background: var(--dark-color);
             color: var(--main-color);
@@ -33,7 +32,6 @@
             box-shadow: var(--shadow-neo);
         }
 
-        /* Dashboard Grid */
         .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
 
         .card {
@@ -71,19 +69,17 @@
 </head>
 <body>
 
-    <!-- Running Text Rame -->
     <div class="marquee-container">
         <marquee behavior="scroll" direction="left">
-            SELAMAT DATANG DI PORTAL NURUL HUDA v2.0 // DEPLOYED BY LIONEL ALVIO // FITUR REAL-TIME STATUS AKTIF // JELAJAHI AL-QUR'AN & KISAH NABI DENGAN INTERFACE NEO-BRUTALISM TERBARU! // SISTEM TERINTEGRASI // SYSTEM STATUS: ONLINE & STABLE //
+            SELAMAT DATANG USER SEMOGA BETAH YA , NIKMATI SEMUA FITUR YANG TERDAPAT DI WEBSITE INI
         </marquee>
     </div>
 
     <div class="dashboard-grid">
-        <!-- Main Card -->
         <div class="card">
             <div class="clock-box" id="realTime">00:00:00</div>
-            <h1 class="hero-title">Nurul Huda<br>Dashboard</h1>
-            <p style="font-weight: 600;">Sistem literasi digital & alat ibadah harian. Dirancang untuk efisiensi tinggi, dioptimalkan untuk performa.</p>
+            <h1 class="hero-title">Nurul Huda<br>Muslim Website</h1>
+            <p style="font-weight: 600;">Website yang digunakan untuk mempelajari sebuah yang terdapat di agama islam, serta terdapat menu Al Quran yang cocok di gunakan untuk membaca</p>
             
             <div class="stats-grid">
                 <div class="stat-box">114 Surah<br><span style="font-size:12px;">DATABASE</span></div>
@@ -91,17 +87,15 @@
             </div>
         </div>
 
-        <!-- Navigation Menu -->
         <div class="card">
             <h3 style="margin-bottom: 15px;"><i class='bx bx-rocket'></i> Quick Actions</h3>
-            <a href="quran.html" class="btn-menu">📖 BACA AL-QUR'AN (30 JUZ)</a>
-            <a href="kisah.html" class="btn-menu" style="background: var(--accent-purple);">KISAH NABI & SEJARAH</a>
-            <a href="tentang.html" class="btn-menu" style="background: var(--accent-green);">TOOLS & SETTINGS</a>
+            <a href="quran.html" class="btn-menu">AL QURAN MENU</a>
+            <a href="kisah.html" class="btn-menu" style="background: var(--accent-purple);">KISAH NABI SERTA SEJARAHNYA</a>
+            <a href="tentang.html" class="btn-menu" style="background: var(--accent-green);">TENTANG WEBSITE INI</a>
         </div>
     </div>
 
     <script>
-        // Jam Real-time
         function updateClock() {
             const now = new Date();
             document.getElementById('realTime').innerText = now.toLocaleTimeString('id-ID');
